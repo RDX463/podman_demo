@@ -39,5 +39,15 @@ pipeline {
                 }
             }
         }
+        stage('Security Scan') {
+            steps {
+                echo 'Running Trivy Security Scan...'
+                // 1. Fail the build if CRITICAL vulnerabilities are found
+                sh 'trivy image --exit-code 1 --severity CRITICAL --no-progress ghcr.io/rdx463/podman_demo:latest'
+                
+                // 2. Just print HIGH/MEDIUM/LOW for info (don't fail build)
+                sh 'trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress ghcr.io/rdx463/podman_demo:latest'
+            }
+        }
     }
 }
