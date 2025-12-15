@@ -1,2 +1,4 @@
-FROM docker.io/library/alpine:latest
-CMD ["echo", "Automated Build via Webhook Works 100%!"]
+FROM python:3.9-slim
+WORKDIR /app
+RUN echo "Hello from Fedora Quadlets!" > index.html
+CMD ["python3", "-m", "http.server", "80"]
