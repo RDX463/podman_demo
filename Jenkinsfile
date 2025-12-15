@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Fedora') {
+        stage('Deploy to System') {
             steps {
                 script {
                     echo "Deploying to Systemd..."
